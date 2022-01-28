@@ -837,8 +837,14 @@ module ZendeskAPI
 
   class Invocation < Resource; end
 
+  class SigningSecret < DataResource
+    include Read
+    include Create
+  end
+
   class Webhook < Resource
     has_many Invocation
+    has SigningSecret, path: 'signing_secret'
   end
 
   module Voice
